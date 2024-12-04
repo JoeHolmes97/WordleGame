@@ -11,3 +11,14 @@
 #   c: A letter is in the word and in the right place
 # 5: Limit the user to words that appear in the tuple (to stop a user just typing 'aaaaa') by throwing up an error if the word isn't in it
 # 6: Limit the number of guesses a user can do before the game ends
+
+from tkinter import *
+
+window = Tk()
+
+
+
+
+
+
+window.mainloop()
