@@ -13,7 +13,6 @@
 # 6: Limit the number of guesses a user can do before the game ends
 # 7: Create a way to exit the game
 
-from ast import Lambda
 import random
 from tkinter import *
 
@@ -55,12 +54,15 @@ def guessingWord(randomWord, wordList, errorMessage):
         message = "Sorry, the word you just entered is not in my dictionary. Please try again."
 
     else:
-        return
+        message = ""
+        ComparingWord(randomWord, guessInput)
+        return guessInput
 
     errorMessage.config(text=message)
     # Edit the errorMessage label, changing the text to the variable given
 
-        
+def ComparingWord(randomWord, guessInput):
+    return
 
 
 introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
@@ -103,5 +105,15 @@ misplacedLettersTitle.grid(row=7,column=1)
 incorrectLettersTitle = Label(window, text="Incorrect Letters")
 incorrectLettersTitle.grid(row=7,column=2)
 # Create titles for the section where the used letters will go
+
+correctLetters = Text(window, height=8, width=15)
+correctLetters.grid(row=8, column=0)
+
+misplacedLetters = Text(window, height=8, width=15)
+misplacedLetters.grid(row=8, column=1)
+
+incorrectLetters = Text(window, height=8, width=15)
+incorrectLetters.grid(row=8, column=2)
+
 
 window.mainloop()
