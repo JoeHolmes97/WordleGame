@@ -24,6 +24,10 @@ def BlankLine(row, column):
     blankSpace.grid(row=row, column=column, columnspan=3)
 # A function for creating a blank line in the window
 
+def WordGuess():
+
+    return
+# A function for creating a label to show the guessed letters
 introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
 introLabel.grid(row=0, column=0, columnspan=3)
 # Create an introductory message and put it at the top of the screen
@@ -37,5 +41,18 @@ textBox = Entry(window, width=50, borderwidth=5)
 textBox.grid(row=2, column=0, columnspan=3)
 # Create a text box for users to enter their gusses in
 
+enterGuess = Button(window, text="Enter Guess", padx=10,pady=5)
+enterGuess.grid(row=3,column=1)
+# Create a button for entering the guess
+
+BlankLine(4,0)
+
+correctLettersTitle = Label(window, text="Correct Letters")
+correctLettersTitle.grid(row=5,column=0)
+misplacedLettersTitle = Label(window, text="Misplaced Letters")
+misplacedLettersTitle.grid(row=5,column=1)
+incorrectLettersTitle = Label(window, text="Incorrect Letters")
+incorrectLettersTitle.grid(row=5,column=2)
+# Create titles for the section where the used letters will go
 
 window.mainloop()
