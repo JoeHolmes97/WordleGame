@@ -3,8 +3,8 @@
 # with correct letters being marked down, misplaced letters being shown as such and incorrect letters being shown as wrong.
 
 # 1: Create an interface - Done
-# 2: Have a label box for the word, initially populated with '_____', and have an input box where the user can type their guess
-# 3: Import the 5-letter words as a tuple (as the imported words aren't going to change) and have the program pick on at random
+# 2: Have a label box for the word, initially populated with '_____', and have an input box where the user can type their guess - Done
+# 3: Import the 5-letter words as a tuple (as the imported words aren't going to change) and have the program pick one at random - Done 
 # 4: When the user guesses have the program search the letters to see if any match the chosen word and tell the user if:
 #   a: A letter isn't in the word
 #   b: A letter is in the word but in the wrong place
@@ -13,7 +13,11 @@
 # 6: Limit the number of guesses a user can do before the game ends
 # 7: Create a way to exit the game
 
+from ast import Lambda
+import random
 from tkinter import *
+
+from random import randint as randint
 
 window = Tk()
 
@@ -30,22 +34,63 @@ def WordGuess(guessedLetters):
     guessedLetters.grid(row=2, column=1)
 # A function for creating a label to show the guessed letters
 
+def guessingWord(randomWord, wordList, errorMessage):
+# Function for taking the users guess and comparing it to the random word, covering the errors users might make
+    guessInput = textBox.get()
+    
+    message = ""
+    
+    errorMessage.forget()
+    # Forget (clear) the space where the label is whenever this function is called
+
+    if guessInput.isalpha() == False:
+        message = "Sorry, the text you just entered contains something that is not a letter. Please try again."
+        # If the user input contains non-letter character, throw up an error message.
+
+    elif len(guessInput) != 5:
+        message = "I'm sorry, the word you just entered was not 5 letters. Please try again."
+        # If the user input is less than 5 letters or greater than 5 letters, throw up an error message.
+
+    elif (guessInput.lower() + "\n") not in wordList:
+        message = "Sorry, the word you just entered is not in my dictionary. Please try again."
+
+    else:
+        return
+
+    errorMessage.config(text=message)
+    # Edit the errorMessage label, changing the text to the variable given
+
+        
+
+
 introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
 introLabel.grid(row=0, column=0, columnspan=3)
 # Create an introductory message and put it at the top of the screen
 
+wordList = tuple(open("Words.txt", "r"))
+# Reads the words.txt file into a tuple, but has "\n" at the end of every word because I don't know how to remove it
+
+randomWord = wordList[randint(0,(len(wordList)))]
+
+print(randomWord)
+
 BlankLine(1,0)
 # Create a blank space below the intro message
+
 guessedLetters = "_____"
 WordGuess(guessedLetters)
+# Use the WordGuess function to display a default text label
 
-BlankLine(3,0)
+
+errorMessage = Label(window, text="")
+errorMessage.grid(row=3, column=0, columnspan=3)
+# Create a label for the errors that could happen
 
 textBox = Entry(window, width=50, borderwidth=5)
 textBox.grid(row=4, column=0, columnspan=3)
 # Create a text box for users to enter their gusses in
 
-enterGuess = Button(window, text="Enter Guess", padx=10,pady=5)
+enterGuess = Button(window, text="Enter Guess", padx=10,pady=5, command=lambda: guessingWord(randomWord, wordList, errorMessage))
 enterGuess.grid(row=5,column=1)
 # Create a button for entering the guess
 
