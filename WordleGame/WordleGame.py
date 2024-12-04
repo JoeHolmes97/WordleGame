@@ -19,7 +19,23 @@ window = Tk()
 
 window.title("Wordle Game")
 
+def BlankLine(row, column):
+    blankSpace = Label(window, text="")
+    blankSpace.grid(row=row, column=column, columnspan=3)
+# A function for creating a blank line in the window
 
+introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
+introLabel.grid(row=0, column=0, columnspan=3)
+# Create an introductory message and put it at the top of the screen
+
+BlankLine(1,0)
+# Create a blank space below the intro message
+
+
+
+textBox = Entry(window, width=50, borderwidth=5)
+textBox.grid(row=2, column=0, columnspan=3)
+# Create a text box for users to enter their gusses in
 
 
 window.mainloop()
