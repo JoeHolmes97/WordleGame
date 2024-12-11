@@ -26,10 +26,13 @@ def BlankLine(row, column):
     blankSpace.grid(row=row, column=column, columnspan=3)
 # A function for creating a blank line in the window
 
-def WordGuess(guessedLetters):
+def WordGuess(guessedWord):
     
-    guessedLetters = Label(window, text="| " + "".join(guessedLetters) + " |")
+    guessedLetters = Label(window, text="")
     guessedLetters.grid(row=2, column=1)
+
+    guessedLetters.forget()
+    guessedLetters.config(text="| " + "".join(guessedWord) + " |")
 # A function for creating a label to show the guessed letters
 
 def guessingWord(randomWord, wordList, errorMessage, guessedLetters):
@@ -79,13 +82,13 @@ def ComparingWord(randomWord, guessInput, guessedLetters):
 
             else:
             # If the letter is in the guessed word but not in the same place
-                return
+                print("ASDF")
 
         else:
         # If the letter is not in the guessed word
-            return
+            print("ASDF")
 
-    return 
+    return guessedLetters
 
 
 introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
