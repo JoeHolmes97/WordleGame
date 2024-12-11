@@ -13,7 +13,6 @@
 # 6: Limit the number of guesses a user can do before the game ends
 # 7: Create a way to exit the game
 
-import random
 from tkinter import *
 
 from random import randint as randint
