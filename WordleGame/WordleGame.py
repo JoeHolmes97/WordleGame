@@ -32,7 +32,7 @@ def WordGuess(guessedLetters):
     guessedLetters.grid(row=2, column=1)
 # A function for creating a label to show the guessed letters
 
-def guessingWord(randomWord, wordList, errorMessage):
+def guessingWord(randomWord, wordList, errorMessage, guessedLetters):
 # Function for taking the users guess and comparing it to the random word, covering the errors users might make
     guessInput = textBox.get()
     
@@ -54,13 +54,39 @@ def guessingWord(randomWord, wordList, errorMessage):
 
     else:
         message = ""
-        ComparingWord(randomWord, guessInput)
-        return guessInput
+
+        guessedLetters = ComparingWord(randomWord, guessInput, guessedLetters)
+
+        WordGuess(guessedLetters)
+
+        return guessedLetters
 
     errorMessage.config(text=message)
     # Edit the errorMessage label, changing the text to the variable given
 
-def ComparingWord(randomWord, guessInput):
+def ComparingWord(randomWord, guessInput, guessedLetters):
+    
+    letterNum = 0
+
+    for i in randomWord:
+        
+        if i in guessInput:
+        # If the letter is in the guess inputted
+            if i == guessInput[letterNum]:
+            # If the letter is in the same place as the guess
+                guessedLetters[letterNum] = guessInput[letterNum]
+                letterNum += 1
+
+            else:
+            # If the letter is in the guessed word but not in the same place
+                return
+
+        else:
+        # If the letter is not in the guessed word
+            return
+
+
+
     return
 
 
@@ -91,7 +117,7 @@ textBox = Entry(window, width=50, borderwidth=5)
 textBox.grid(row=4, column=0, columnspan=3)
 # Create a text box for users to enter their gusses in
 
-enterGuess = Button(window, text="Enter Guess", padx=10,pady=5, command=lambda: guessingWord(randomWord, wordList, errorMessage))
+enterGuess = Button(window, text="Enter Guess", padx=10,pady=5, command=lambda: guessingWord(randomWord, wordList, errorMessage, guessedLetters))
 enterGuess.grid(row=5,column=1)
 # Create a button for entering the guess
 
