@@ -28,7 +28,7 @@ def BlankLine(row, column):
 
 def WordGuess(guessedLetters):
     
-    guessedLetters = Label(window, text="| " + guessedLetters + " |")
+    guessedLetters = Label(window, text="| " + "".join(guessedLetters) + " |")
     guessedLetters.grid(row=2, column=1)
 # A function for creating a label to show the guessed letters
 
@@ -85,9 +85,7 @@ def ComparingWord(randomWord, guessInput, guessedLetters):
         # If the letter is not in the guessed word
             return
 
-
-
-    return
+    return 
 
 
 introLabel = Label(window, text="Welcome to my wordle game! Please enter a 5-letter word to begin playing.")
@@ -104,7 +102,7 @@ print(randomWord)
 BlankLine(1,0)
 # Create a blank space below the intro message
 
-guessedLetters = "_____"
+guessedLetters = ["_","_","_","_","_"]
 WordGuess(guessedLetters)
 # Use the WordGuess function to display a default text label
 
