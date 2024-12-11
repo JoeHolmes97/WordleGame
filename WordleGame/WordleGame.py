@@ -27,13 +27,15 @@ def BlankLine(row, column):
 # A function for creating a blank line in the window
 
 def WordGuess(guessedWord):
-    
+    # A function for creating a label to show the guessed letters
     guessedLetters = Label(window, text="")
     guessedLetters.grid(row=2, column=1)
-
+    # Create the label
     guessedLetters.forget()
+    # Clear the label of any values, so when the function is next called it won't overlap letters
     guessedLetters.config(text="| " + "".join(guessedWord) + " |")
-# A function for creating a label to show the guessed letters
+    # Edit the text in the label to be "|_____|", with the "_" being replaced by correct letters
+
 
 def guessingWord(randomWord, wordList, errorMessage, guessedLetters):
 # Function for taking the users guess and comparing it to the random word, covering the errors users might make
