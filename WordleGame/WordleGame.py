@@ -95,6 +95,7 @@ def ComparingWord(randomWord, guessInput, guessedLetters):
             print("Incorrect letter")
         
         letterNum += 1
+        # Increment the index number of the letter that's compared by 1
 
 
     return guessedLetters
