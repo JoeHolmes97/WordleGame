@@ -28,17 +28,21 @@ def BlankLine(row, column):
 
 def WordGuess(guessedWord):
     # A function for creating a label to show the guessed letters
+
     guessedLetters = Label(window, text="")
     guessedLetters.grid(row=2, column=1)
     # Create the label
+
     guessedLetters.forget()
     # Clear the label of any values, so when the function is next called it won't overlap letters
+
     guessedLetters.config(text="| " + "".join(guessedWord) + " |")
     # Edit the text in the label to be "|_____|", with the "_" being replaced by correct letters
 
 
 def guessingWord(randomWord, wordList, errorMessage, guessedLetters):
 # Function for taking the users guess and comparing it to the random word, covering the errors users might make
+
     guessInput = textBox.get()
     
     message = ""
@@ -73,22 +77,25 @@ def ComparingWord(randomWord, guessInput, guessedLetters):
     
     letterNum = 0
 
-    for i in randomWord:
+    for i in guessInput:
         
-        if i in guessInput:
+        if (i in randomWord)==True:
         # If the letter is in the guess inputted
-            if i == guessInput[letterNum]:
+
+            if i == randomWord[letterNum]:
             # If the letter is in the same place as the guess
                 guessedLetters[letterNum] = guessInput[letterNum]
-                letterNum += 1
-
+                
             else:
             # If the letter is in the guessed word but not in the same place
-                print("ASDF")
+                print("Incorrect placement of a letter")
 
         else:
         # If the letter is not in the guessed word
-            print("ASDF")
+            print("Incorrect letter")
+        
+        letterNum += 1
+
 
     return guessedLetters
 
